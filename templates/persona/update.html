@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Actualizar empleado    
+{% endblock title %}
+    
+
+{% block body %}
+{% include 'includes/header.html' %}
+<div class="grid-container">
+    <div class="grid-x grid margin-x">
+        <h1 class="cell" style="font-size: 28px;">Modificar Empleado</h1>
+        <div class="cell">
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            <div class="grid-x">
+                <label class="cell medium-7 large-7">Nombres:
+                    <div>
+                     {{form.first_name}}
+                    </div>
+                </label>
+                <label class="cell medium-7 large-7">Apellidos:
+                    <div>
+                     {{form.last_name}}
+                    </div>
+                </label>
+                <label class="cell medium-7 large-7">Cargo:
+                    <div>
+                     {{form.cargo}}
+                    </div>
+                </label>
+                <label class="cell medium-7 large-7">Departamento:
+                    <div>
+                     {{form.departamento}}
+                    </div>
+                </label>
+                <label class="cell medium-7 large-7">Habilidades:
+                    <div>
+                     {{form.Habilidades}}
+                    </div>
+                </label>
+                <label class="cell medium-7 large-7">Avatar:
+                    <div>
+                     {{form.avatar}}
+                    </div>
+                </label>
+                <div class="cell medium-7 large-7" style="align-items: center;">
+                    <button type="submit" class="button"> Guardar</button> 
+                </div>
+            </form>              
+
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
+    
+{% endblock body %}
+    
+

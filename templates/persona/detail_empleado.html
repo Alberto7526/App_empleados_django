@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{empleado.full_name}}   
+{% endblock title %}
+
+ 
+ {% block body %}
+    {% include 'includes/header.html' %}
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <h1 class="cell" style="font-size: 28px;">Detalle Empleado</h1>
+            <div class=" cell card medium-6 large-6" style="width: 300px;">
+                <div class="card-divider">
+                    {{empleado.full_name}}
+                </div>
+                
+                {% if empleado.avatar %}
+                    <img src="{{empleado.avatar.url}}">
+                {% else %}
+                    <img src="{% static 'img/avatar.png' %}">
+                {% endif %}
+                <div class="card-section">
+                  <p>{{empleado.cargo}}</p>
+                </div>
+            </div>
+            <div class="cell medium-6 large-6">
+                <p><b>Nombres: </b></p>
+                <p>{{empleado.first_name}}</p>
+                <p><b>Apellidos: </b></p>
+                <p>{{empleado.last_name}}</p>
+                <p> <b>Departamento:</b></p>
+                <p>{{empleado.departamento.name}}</p>
+                
+                <p><b>Habilidades:</b> </p>
+                
+                {% for habilidad in empleado.Habilidades.all %}
+                    <li>{{habilidad.habilidad}}</li>
+                {% endfor %}
+            </div>
+    
+        </div>
+    </div>    
+    
+ {% endblock body %}
+       

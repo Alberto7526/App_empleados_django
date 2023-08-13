@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lista empleados
+{% endblock title %}
+    
+
+{% block body %}
+    {% include '../includes/header.html' %}
+    <div class="grid-container">
+        <h1 style="font-size: 30px;">Departamentos de la empresa:</h1>
+            {% for e in object_list %}
+                <div class="callout secondary grid-x grid-margin-x">
+                    <div class="cell medium-4 large-4">
+                        {{e.name}}
+                    </div>
+                    <div class="cell medium-4 large-4">
+                        {{e.short_name}}
+                    </div>
+                    <div class="cell medium-4 large-4">
+                        <a class="hollow button" href="{% url 'persona_app:empleado_area' e.short_name %}">Ver empleados</a>
+                    </div>
+                </div>
+            {% endfor%}        
+    </div>
+    <!-- Inicio paginacion -->
+    <nav style="align-items: center;">
+        <div class="pagination">
+            <ul class="pagination text-center">
+                {% if page_obj.has_previous %}
+                <li><a href="?page=1">&laquo; Primera</a></li>
+                <li><a href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+                {% endif %}
+            
+                {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="button primary">{{num}}</li>
+                {% else %}
+                    <li><a href="?page={{ num }}">{{ num }}</a></li>
+                {% endif %}
+                {% endfor %}
+            
+                {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+                <li><a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <!-- Fin paginacion -->
+{% endblock body%}
